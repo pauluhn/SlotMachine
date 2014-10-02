@@ -43,6 +43,8 @@ class ViewController: UIViewController {
     let kNumberOfContainers = 3 // Columns
     let kNumberOfSlots = 3 // Rows
     
+    // MARK: Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -57,7 +59,12 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+}
 
+extension ViewController {
+
+    // MARK: Setups
+    
     func setupContainerViews()  {
         let x = self.view.bounds.origin.x + kMarginForView
         let w = self.view.bounds.width - (kMarginForView * 2)
