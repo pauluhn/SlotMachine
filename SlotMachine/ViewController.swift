@@ -19,9 +19,18 @@ class ViewController: UIViewController {
     // First container
     var titleLabel: UILabel!
     
+    // Information labels
+    var creditsLabel: UILabel!
+    var betLabel: UILabel!
+    var winnerPaidLabel: UILabel!
+    var creditsTitleLabel: UILabel!
+    var betTitleLabel: UILabel!
+    var winnerPaidTitleLabel: UILabel!
+    
     // Constants
     let kMarginForView:CGFloat = 10.0
     let kMarginForSlot:CGFloat = 1.0
+    let kThird:CGFloat = 1.0/3.0
     let kSixth:CGFloat = 1.0/6.0
     let kNumberOfContainers = 3 // Columns
     let kNumberOfSlots = 3 // Rows
@@ -32,6 +41,7 @@ class ViewController: UIViewController {
         setupContainerViews()
         setupFirstContainer(self.firstContainer)
         setupSecondContainer(self.secondContainer)
+        setupThirdContainer(self.thirdContainer)
     }
 
     override func didReceiveMemoryWarning() {
@@ -92,6 +102,65 @@ class ViewController: UIViewController {
                 containerView.addSubview(slotImageView)
             }
         }
+    }
+    
+    func setupThirdContainer(containerView:UIView) {
+        let x = containerView.frame.width * kSixth
+        let y = containerView.frame.height * kThird
+        
+        self.creditsLabel = UILabel()
+        self.creditsLabel.text = "000000"
+        self.creditsLabel.textColor = UIColor.redColor()
+        self.creditsLabel.font = UIFont(name: "Menlo-Bold", size: 16)
+        self.creditsLabel.sizeToFit()
+        self.creditsLabel.center = CGPointMake(x, y)
+        self.creditsLabel.textAlignment = NSTextAlignment.Center
+        self.creditsLabel.backgroundColor = UIColor.darkGrayColor()
+        containerView.addSubview(self.creditsLabel)
+        
+        self.betLabel = UILabel()
+        self.betLabel.text = "0000"
+        self.betLabel.textColor = UIColor.redColor()
+        self.betLabel.font = UIFont(name: "Menlo-Bold", size: 16)
+        self.betLabel.sizeToFit()
+        self.betLabel.center = CGPointMake(x * 3, y)
+        self.betLabel.textAlignment = NSTextAlignment.Center
+        self.betLabel.backgroundColor = UIColor.darkGrayColor()
+        containerView.addSubview(self.betLabel)
+        
+        self.winnerPaidLabel = UILabel()
+        self.winnerPaidLabel.text = "000000"
+        self.winnerPaidLabel.textColor = UIColor.redColor()
+        self.winnerPaidLabel.font = UIFont(name: "Menlo-Bold", size: 16)
+        self.winnerPaidLabel.sizeToFit()
+        self.winnerPaidLabel.center = CGPointMake(x * 5, y)
+        self.winnerPaidLabel.textAlignment = NSTextAlignment.Center
+        self.winnerPaidLabel.backgroundColor = UIColor.darkGrayColor()
+        containerView.addSubview(self.winnerPaidLabel)
+        
+        self.creditsTitleLabel = UILabel()
+        self.creditsTitleLabel.text = "Credits"
+        self.creditsTitleLabel.textColor = UIColor.blackColor()
+        self.creditsTitleLabel.font = UIFont(name: "AmericanTypewriter", size: 14)
+        self.creditsTitleLabel.sizeToFit()
+        self.creditsTitleLabel.center = CGPointMake(x, y * 2)
+        containerView.addSubview(self.creditsTitleLabel)
+        
+        self.betTitleLabel = UILabel()
+        self.betTitleLabel.text = "Bet"
+        self.betTitleLabel.textColor = UIColor.blackColor()
+        self.betTitleLabel.font = UIFont(name: "AmericanTypewriter", size: 14)
+        self.betTitleLabel.sizeToFit()
+        self.betTitleLabel.center = CGPointMake(x * 3, y * 2)
+        containerView.addSubview(self.betTitleLabel)
+        
+        self.winnerPaidTitleLabel = UILabel()
+        self.winnerPaidTitleLabel.text = "Winner Paid"
+        self.winnerPaidTitleLabel.textColor = UIColor.blackColor()
+        self.winnerPaidTitleLabel.font = UIFont(name: "AmericanTypewriter", size: 14)
+        self.winnerPaidTitleLabel.sizeToFit()
+        self.winnerPaidTitleLabel.center = CGPointMake(x * 5, y * 2)
+        containerView.addSubview(self.winnerPaidTitleLabel)
     }
 }
 
