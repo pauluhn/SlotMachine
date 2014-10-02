@@ -62,6 +62,27 @@ class ViewController: UIViewController {
 }
 
 extension ViewController {
+    
+    // MARK: Actions
+    
+    func resetButtonPressed (button: UIButton) {
+        println("resetButtonPressed \(button)")
+    }
+    
+    func betOneButtonPressed (button: UIButton) {
+        println("betOneButtonPressed \(button)")
+    }
+    
+    func betMaxButtonPressed (button: UIButton) {
+        println("betMaxButtonPressed \(button)")
+    }
+    
+    func spinButtonPressed (button: UIButton) {
+        println("spinButtonPressed \(button)")
+    }
+}
+
+extension ViewController {
 
     // MARK: Setups
     
