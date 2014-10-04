@@ -33,6 +33,9 @@ class ViewController: UIViewController {
     var betMaxButton: UIButton!
     var spinButton: UIButton!
     
+    // Slots Array
+    var slots: [[Slot]] = []
+    
     // Constants
     let kMarginForView: CGFloat = 10.0
     let kMarginForSlot: CGFloat = 1.0
@@ -78,7 +81,9 @@ extension ViewController {
     }
     
     func spinButtonPressed (button: UIButton) {
-        println("spinButtonPressed \(button)")
+        slots = Factory.createSlots(kNumberOfContainers, numberOfSlots: kNumberOfSlots)
+        removeSlotImageViews()
+        setupSecondContainer(secondContainer)
     }
 }
 
@@ -128,8 +133,13 @@ extension ViewController {
     func setupSecondContainer(containerView: UIView) {
         for var containerNumber = 0; containerNumber < kNumberOfContainers; containerNumber++ {
             for var slotNumber = 0; slotNumber < kNumberOfSlots; slotNumber++ {
+                
                 var slotImageView = UIImageView()
-                slotImageView.backgroundColor = UIColor.yellowColor()
+                if slots.isEmpty {
+                    slotImageView.image = UIImage(named: "Ace")
+                } else {
+                    slotImageView.image = slots[containerNumber][slotNumber].image
+                }
                 
                 var x = containerView.bounds.origin.x + (containerView.bounds.size.width * CGFloat(containerNumber) / CGFloat(kNumberOfContainers))
                 var y = containerView.bounds.origin.y + (containerView.bounds.size.height * CGFloat(slotNumber) / CGFloat(kNumberOfSlots))
@@ -246,3 +256,13 @@ extension ViewController {
     }
 }
 
+extension ViewController {
+    
+    // MARK: Helpers
+    
+    func removeSlotImageViews () {
+        for view in secondContainer.subviews {
+            view.removeFromSuperview()
+        }
+    }
+}
