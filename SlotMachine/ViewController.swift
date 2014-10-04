@@ -49,6 +49,7 @@ class ViewController: UIViewController {
     let kEighth: CGFloat = 1.0/8.0
     let kNumberOfContainers = 3 // Columns
     let kNumberOfSlots = 3 // Rows
+    let kMaxBet = 5
     
     // MARK: Lifecycle
     
@@ -79,11 +80,35 @@ extension ViewController {
     }
     
     func betOneButtonPressed (button: UIButton) {
-        println("betOneButtonPressed \(button)")
+        if credits <= 0 {
+            showAlertWithText(header: "No More Credits", message: "Reset Game")
+        }
+        else {
+            if currentBet < kMaxBet {
+                currentBet += 1
+                credits -= 1
+                updateMainView()
+            }
+            else {
+                showAlertWithText(message: "You can only bet \(kMaxBet) credits at a time!")
+            }
+        }
     }
     
     func betMaxButtonPressed (button: UIButton) {
-        println("betMaxButtonPressed \(button)")
+        if credits <= kMaxBet {
+            showAlertWithText(header: "Not Enough Credits", message: "Bet Less")
+        }
+        else {
+            if currentBet < kMaxBet {
+                credits -= kMaxBet - currentBet
+                currentBet = kMaxBet
+                updateMainView()
+            }
+            else {
+                showAlertWithText(message: "You can only bet \(kMaxBet) credits at a time!")
+            }
+        }
     }
     
     func spinButtonPressed (button: UIButton) {
@@ -285,5 +310,11 @@ extension ViewController {
         creditsLabel.text = "\(credits)"
         betLabel.text = "\(currentBet)"
         winnerPaidLabel.text = "\(winnings)"
+    }
+    
+    func showAlertWithText (header : String = "Warning", message : String) {
+        var alert = UIAlertController(title: header, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 }
