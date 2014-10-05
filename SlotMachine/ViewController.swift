@@ -172,10 +172,10 @@ extension ViewController {
                     slotImageView.image = slots[containerNumber][slotNumber].image
                 }
                 
-                var x = containerView.bounds.origin.x + (containerView.bounds.size.width * CGFloat(containerNumber) / CGFloat(kNumberOfContainers))
-                var y = containerView.bounds.origin.y + (containerView.bounds.size.height * CGFloat(slotNumber) / CGFloat(kNumberOfSlots))
-                var w = containerView.bounds.width / CGFloat(kNumberOfContainers) - kMarginForSlot
-                var h = containerView.bounds.height / CGFloat(kNumberOfSlots) - kMarginForSlot
+                var x = containerView.bounds.origin.x + (containerView.bounds.size.width * CGFloat(slotNumber) / CGFloat(kNumberOfSlots))
+                var y = containerView.bounds.origin.y + (containerView.bounds.size.height * CGFloat(containerNumber) / CGFloat(kNumberOfContainers))
+                var w = containerView.bounds.width / CGFloat(kNumberOfSlots) - kMarginForSlot
+                var h = containerView.bounds.height / CGFloat(kNumberOfContainers) - kMarginForSlot
                 slotImageView.frame = CGRectMake(x, y, w, h)
                 containerView.addSubview(slotImageView)
             }
