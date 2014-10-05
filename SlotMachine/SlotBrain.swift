@@ -20,10 +20,19 @@ class SlotBrain {
                 winnings += 1
                 flushWinCount += 1
             }
+            if checkThreeInARow(slotRow) {
+                println("three in a row")
+                winnings += 1
+                straightWinCount += 1
+            }
         }
         if flushWinCount == 3 {
             println("Royal Flush")
             winnings += 15
+        }
+        if straightWinCount == 3 {
+            println("Epic straight")
+            winnings += 1000
         }
 
         return winnings
@@ -41,5 +50,20 @@ class SlotBrain {
             }
         }
         return slotRow.count == isRedTrue || slotRow.count == isRedFalse
+    }
+    
+    class func checkThreeInARow (slotRow: [Slot]) -> Bool {
+        var ascending = true
+        var descending = true
+        
+        for var slotNumber = 0; slotNumber < slotRow.count; slotNumber++ {
+            if slotRow.first!.value != slotRow[slotNumber].value - slotNumber {
+                ascending = false
+            }
+            if slotRow.first!.value != slotRow[slotNumber].value + slotNumber {
+                descending = false
+            }
+        }
+        return ascending || descending
     }
 }
