@@ -115,6 +115,11 @@ extension ViewController {
         slots = Factory.createSlots(kNumberOfContainers, numberOfSlots: kNumberOfSlots)
         removeSlotImageViews()
         setupSecondContainer(secondContainer)
+
+        winnings = SlotBrain.computeWinnings(slots) * currentBet
+        credits += winnings
+        currentBet = 0
+        updateMainView()
     }
 }
 
